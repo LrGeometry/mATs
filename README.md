@@ -29,7 +29,7 @@ to generate test coverage on all tests run:
 The implementation uses 2 separate contracts - a proxy contract (`AGLDTokenProxy.sol`)and an implementation contract(`AGLDTokenV1.sol`).
 This allows upgrading the contract, as a new implementation contact can be deployed and the Proxy updated to point to it.
 ## AGLDToken
-The FiatToken offers a number of capabilities, which briefly are described below. There are more
+The AGLDToken offers a number of capabilities, which briefly are described below. There are more
 [detailed design docs](./doc/tokendesign.md) in the `doc` folder.
 
 ### ERC20 compatible
@@ -57,3 +57,5 @@ need the allowance increased again by the `masterMinter`.
 The contract has an Owner, who can change the `owner`, `pauser`, `blacklister`, or `masterMinter` addresses. The `owner` can not change
 the `proxyOwner` address.
 
+
+## TODO : Wanting to add MetaTx / before Launch if not in an Upgradable Proxy 
