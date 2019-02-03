@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.0;
 
 import "./ERC20.sol";
 import "./Ownable.sol";
@@ -27,7 +27,7 @@ import "./Pausable.sol";
  * @title AnthemGold
  * @dev ERC20 Token backed by Gold Bullion reserves
  */
-contract AnthemGoldV1 is Ownable, ERC20, Pausable, Blacklistable {
+contract AGLDTokenV1 is Ownable, ERC20, Pausable, Blacklistable {
     using SafeMath for uint256;
 
     string public name;
@@ -50,9 +50,9 @@ contract AnthemGoldV1 is Ownable, ERC20, Pausable, Blacklistable {
     event MasterMinterChanged(address indexed newMasterMinter);
 
     function initialize(
-        string _name,
-        string _symbol,
-        string _currency,
+        string memory _name,
+        string memory _symbol,
+        string memory _currency,
         uint8 _decimals,
         address _masterMinter,
         address _pauser,
@@ -101,7 +101,7 @@ contract AnthemGoldV1 is Ownable, ERC20, Pausable, Blacklistable {
         balances[_to] = balances[_to].add(_amount);
         minterAllowed[msg.sender] = mintingAllowedAmount.sub(_amount);
         emit Mint(msg.sender, _to, _amount);
-        emit Transfer(0x0, _to, _amount);
+        emit Transfer(address(0), _to, _amount);
         return true;
     }
 

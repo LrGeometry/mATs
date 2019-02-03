@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.0;
 
 import './../AGLDTokenV1.sol';
 
@@ -30,9 +30,9 @@ contract AGLDTokenV2NewFieldsNewLogicTest is AGLDTokenV1 {
     bool internal initializedV2;
 
     function initialize(
-        string _name,
-        string _symbol,
-        string _currency,
+        string memory _name,
+        string memory _symbol,
+        string memory _currency,
         uint8 _decimals,
         address _masterMinter,
         address _pauser,
