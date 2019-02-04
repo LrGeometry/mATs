@@ -21,7 +21,7 @@ contract UpgradeabilityProxy is Proxy {
    * This is the keccak-256 hash of "org.zeppelinos.proxy.implementation", and is
    * validated in the constructor.
    */
-  bytes32 private constant IMPLEMENTATION_SLOT = <INSERT AGLDTOKEN.SOL MAINNET ADDRESS>;
+  bytes32 private constant IMPLEMENTATION_SLOT = 0x10d6a54a4754c8869d6886b5f5d7fbfa5b4522237ea5c60d11bc4e7a1ff9390b;
 
   /**
    * @dev Contract constructor.
