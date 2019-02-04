@@ -20,7 +20,7 @@ import './AGLDTokenV1.sol';
 
 /**
  * @title AGLDTokenV2
- * @dev ERC20 Token backed by fiat reserves
+ * @dev ERC20 Token backed by gold reserves
  */
 contract AGLDTokenV2 is AGLDTokenV1 {
 }
