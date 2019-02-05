@@ -58,4 +58,4 @@ The contract has an Owner, who can change the `owner`, `pauser`, `blacklister`, 
 the `proxyOwner` address.
 
 
-## TODO : Wanting to add MetaTx / before Launch if not in an Upgradable Proxy 
+## TODO : SET GOOGLE SHEET API UPON SUCCESSFUL TRUFFLE TEST POST AUDIT
