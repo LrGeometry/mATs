@@ -33,7 +33,7 @@ Resources:
   CodeBuildProject:
     Type: "AWS::CodeBuild::Project"
     Properties:
-      Name: "centre-tokens"
+      Name: "agld-tokens"
       Description: !Sub "Codebuild project from stack ${AWS::StackName}"
       Artifacts:
         Type: S3
