@@ -293,10 +293,10 @@ contract AdminUpgradeabilityProxy is UpgradeabilityProxy {
   }
 }
 
-// File: contracts/FiatTokenProxy.sol
+// File: contracts/AGLDTokenProxy.sol
 
 /**
-* Copyright CENTRE SECZ 2018
+* Copyright AnthemGold INC 2019
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -320,10 +320,10 @@ pragma solidity ^0.4.24;
 
 
 /**
- * @title FiatTokenProxy
- * @dev This contract proxies FiatToken calls and enables FiatToken upgrades
+ * @title AGLDTokenProxy
+ * @dev This contract proxies AGLDToken calls and enables AGLDToken upgrades
 */
-contract FiatTokenProxy is AdminUpgradeabilityProxy {
+contract AGLDTokenProxy is AdminUpgradeabilityProxy {
     constructor(address _implementation) public AdminUpgradeabilityProxy(_implementation) {
     }
 }
