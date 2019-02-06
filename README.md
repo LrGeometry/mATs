@@ -58,4 +58,4 @@ The contract has an Owner, who can change the `owner`, `pauser`, `blacklister`, 
 the `proxyOwner` address.
 
 
-## TODO : SET GOOGLE SHEET API UPON SUCCESSFUL TRUFFLE TEST POST AUDIT
+## TODO : SET GOOGLE SHEET API UPON SUCCESSFUL TRUFFLE TEST POST AUDIT.
