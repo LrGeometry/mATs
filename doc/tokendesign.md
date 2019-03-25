@@ -1,10 +1,10 @@
-# AnthemGold Stable Token
-The AnthemGold (AGLDToken) contract is an [H]ERC-20 m[AT] compatible token. 
+# mAT (mintableAssetTokens)
+The mAT contract is an [H]ERC-20 compatible token. 
 It allows minting/burning of tokens by multiple entities, pausing all activity, freezing of individual addresses, 
 and a way to upgrade the contract so that bugs can be fixed or features added.
 
 ## Roles
-The `AGLDToken` has a number of roles (addresses) which control different functionality:
+The `mAT` has a number of roles (addresses) which control different functionality:
 - `masterMinter` - adds and removes minters and increases their minting allowance
 - `minters` - create and destroy tokens
 - `pauser` - pause the contract, which prevents all transfers, minting, and burning
@@ -12,28 +12,28 @@ The `AGLDToken` has a number of roles (addresses) which control different functi
 - `owner` - re-assign any of the roles except for `admin`
 - `admin` - upgrade the contract, and re-assign itself
 
-AnthemGold INC will control the address of all roles except for minters, which will be controlled by the entities that 
-AnthemGold elects to make minters. 
+The issuing corporatinon will control the address of all roles except for minters, which will be controlled by the entities that 
+the issuing corporation elects to make minters. 
 
 ## ERC-20
-The `AGLDToken` implements the standard methods of the ERC-20 interface with some changes: 
+The `mAT` implements the standard methods of the [H]ERC-20 interface with some changes: 
  - A blacklisted address will be unable to call `transfer`, `transferFrom`, or `approve`, and will be unable to receive tokens.
  - `transfer`, `transferFrom`, and `approve` will fail if the contract has been paused.
 
 
 ## Issuing and Destroying tokens
-The AGLDToken allows multiple entities to create and destroy tokens. 
-These entities will have to be members of AnthemBunker or AmagiMetals, and will be vetted by AnthemGold before they are allowed to create new 
-tokens. AnthemGold will not mint any tokens itself, it will approve members to mint and burn tokens.
+The mAT allows multiple entities to create and destroy tokens. 
+These entities will have to be members of the `issuing corporation's choosing`, and will be vetted `by the issuing corporation` before they are allowed to create new 
+tokens. `The issuing corporation` will not mint any tokens itself, it will approve members to mint and burn tokens.
 
-Each `minter` has a `mintingAllowance`, which AnthemGold configures. The `mintingAllowance` is how many tokens that minter 
+Each `minter` has a `mintingAllowance`, which `the issuing corporation` configures. The `mintingAllowance` is how many tokens that minter 
 may issue, and as a `minter` issues tokens, its `mintingAllowance` declines. 
-AnthemGold will periodically reset the `mintingAllowance` as long as a `minter` remains in good standing with AnthemGold and maintains 
+`the issuing corporation` will periodically reset the `mintingAllowance` as long as a `minter` remains in good standing with `the issuing corporation`  and maintains 
 adequate reserves for the tokens it has issued. The `mintingAllowance` is to limit the damage if any particular
 `minter` is compromised.
 
 ### Adding Minters
-AnthemGold adds minters via the `configureMinter` method. When a minter is configured a `mintingAllowance` is specified, 
+`the issuing corporation`  adds minters via the `configureMinter` method. When a minter is configured a `mintingAllowance` is specified, 
 which is the number of tokens that address is allowed to mint. As a `minter` mints tokens, the `mintingAllowance` will decline.
 
 - Only the `masterMinter` role may call configureMinter.
@@ -44,7 +44,7 @@ minting. When a `minter`'s allowance is low, AnthemGold can make another call to
 `mintingAllowance` to a higher value.
 
 ### Removing Minters
-AnthemGold removes minters via the `removeMinter` method. This will remove the `minter` from the list of `minters` and set 
+`the issuing corporation` removes minters via the `removeMinter` method. This will remove the `minter` from the list of `minters` and set 
 its `mintingAllowance` to 0. Once a `minter` is removed it will no longer be able to mint or burn tokens.
 
  - Only the `masterMinter` role may call `removeMinter`. 
@@ -79,13 +79,13 @@ Burning tokens will not increase the mintingAllowance of the address doing the b
 ## Blacklisting
 Addresses can be blacklisted. A blacklisted address will be unable to transfer tokens, approve, mint, or burn tokens. 
 ### Adding a blacklisted address
-AnthemGold reserves the right to blacklist an address via the `blacklist` method. The specified `account` will be added to the blacklist.
+`the issuing corporation` reserves the right to blacklist an address via the `blacklist` method. The specified `account` will be added to the blacklist.
 
 - Only the `blacklister` role may call `blacklist`.
 - Blacklisting emits a `Blacklist(account)` event
 
 ### Removing a blacklisted address
-AnthemGold removes an address from the blacklist via the `unblacklist` method. The specified `account` will be removed from the blacklist.
+`the issuing corporation`  removes an address from the blacklist via the `unblacklist` method. The specified `account` will be removed from the blacklist.
 
 - Only the `blacklister` role may call `unblacklist`.
 - Unblacklisting emits an `UnBlacklist(account)` event.
@@ -97,27 +97,19 @@ the blacklist, removing minters, changing roles, and upgrading will remain opera
 required to fix or mitigate the issue that caused AnthemGold to pause the contract.
 
 ### Pause
-AnthemGold will pause the contract via the `pause` method. This method will set the paused flag to true.
+`the issuing corporation`  will pause the contract via the `pause` method. This method will set the paused flag to true.
 
 - Only the `pauser` role may call pause.
 
 - Pausing emits a `Pause()` event
 
 ### Unpause
-AnthemGold will unpause the contract via the `unpause` method. This method will set the `paused` flag to false. 
+`the issuing corporation`  will unpause the contract via the `unpause` method. This method will set the `paused` flag to false. 
 All functionality will be restored when the contract is unpaused.
 
 - Only the `pauser` role may call unpause.
 
 - Unpausing emits an `Unpause()` event
-
-## Upgrading
-The Fiat Token uses the zeppelinos Unstructured-Storage Proxy pattern [https://docs.zeppelinos.org/docs/upgradeability_AdminUpgradeabilityProxy.html]. [FiatToken.sol](../contracts/FiatToken.sol) is the implementation, the actual token will be a 
- Proxy contract ([FiatTokenProxy.sol](../contracts/FiatTokenProxy.sol)) which will forward all calls to `AGLDToken` via 
- delegatecall. This pattern allows AnthemGold to upgrade the logic of any deployed tokens seamlessly.
-
-- AnthemGoldwill upgrade the token via a call to `upgradeTo` or `upgradeToAndCall` if initialization is required for the new version.
-- Only the `admin` role may call `upgradeTo` or `upgradeToAndCall`. 
 
 ## Reassigning Roles
 The roles outlined above may be reassigned. 

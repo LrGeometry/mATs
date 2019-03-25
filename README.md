@@ -1,5 +1,5 @@
-# anthemgold-tokens
-Gold Bullion Backed tokens on the [HERC](https://herc.one) Protocol.
+# m[AT] (mintableAssetTokens)
+Physical Asset Backed tokens on the [HERC](https://herc.one) Protocol.
 
 # Setup
 Tests need node v8.0.0 or higher, as they depend on async/await functionality. Interacting with eth is very async-y so await makes it much easier to write tests.
@@ -26,14 +26,14 @@ to generate test coverage on all tests run:
 
 
 # Contracts
-The implementation uses 2 separate contracts - a proxy contract (`AGLDTokenProxy.sol`)and an implementation contract(`AGLDTokenV1.sol`).
+The implementation uses 2 separate contracts - a proxy contract (`mATProxy.sol`)and an implementation contract(`mATV1.sol`).
 This allows upgrading the contract, as a new implementation contact can be deployed and the Proxy updated to point to it.
-## AGLDToken
-The AGLDToken offers a number of capabilities, which briefly are described below. There are more
+## mAT
+The mAT offers a number of capabilities, which briefly are described below. There are more
 [detailed design docs](./doc/tokendesign.md) in the `doc` folder.
 
 ### ERC20 compatible
-The AGLDToken implements the [H]ERC20 interface.
+The mAT implements the [H]ERC20 interface.
 
 ### Pausable
 The entire contract can be frozen, in case a serious bug is found or there is a serious key compromise. No transfers can take place while the contract is paused.
