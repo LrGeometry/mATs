@@ -1,5 +1,5 @@
 /**
-Copyright (c) 2018 AnthemGold INC
+Copyright (c) 2019 Hercules SEZC
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -24,10 +24,10 @@ import "./Pausable.sol";
 
 
 /**
- * @title AnthemGold
+ * @title mAT
  * @dev ERC20 Token backed by Gold Bullion reserves
  */
-contract AGLDTokenV1 is Ownable, ERC20, Pausable, Blacklistable {
+contract mATV1 is Ownable, ERC20, Pausable, Blacklistable {
     using SafeMath for uint256;
 
     string public name;
